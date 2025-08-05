@@ -25,13 +25,13 @@ class App extends StatelessWidget {
           update: (_, value, __) => CounterTextTranslation(value),
         ),
       ],
-      child: MaterialApp(home: CounterPage()),
+      child: MaterialApp(home: HomePage()),
     );
   }
 }
 
-class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
