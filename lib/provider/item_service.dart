@@ -4,8 +4,7 @@ class ItemService {
   ItemService();
 
   Future<List<String>> fetchItems() async {
-    print('fetching items');
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 3));
     return _items;
   }
 }

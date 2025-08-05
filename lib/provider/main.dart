@@ -36,7 +36,12 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final counterText = context.watch<CounterTextTranslation>().text;
-    final items = context.watch<ItemList>().items;
+    final isLoading = context.select<ItemList, bool>(
+      (itemList) => itemList.isLoading,
+    );
+    final items = context.select<ItemList, List<String>>(
+      (itemList) => itemList.items,
+    );
 
     return Scaffold(
       appBar: AppBar(title: Text('Counter')),
@@ -45,12 +50,14 @@ class CounterPage extends StatelessWidget {
         children: [
           Text(counterText),
           Expanded(
-            child: ListView.builder(
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                return Text(items[index]);
-              },
-            ),
+            child: (isLoading)
+                ? Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      return Text(items[index]);
+                    },
+                  ),
           ),
         ],
       ),
