@@ -25,7 +25,7 @@ class App extends StatelessWidget {
           update: (_, value, __) => CounterTextTranslation(value),
         ),
       ],
-      child: MaterialApp(home: HomePage()),
+      child: MaterialApp(home: CounterPage()),
     );
   }
 }
@@ -60,6 +60,28 @@ class HomePage extends StatelessWidget {
                   ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.read<Counter>().increment();
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class CounterPage extends StatelessWidget {
+  const CounterPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Counter')),
+      body: Consumer<CounterTextTranslation>(
+        builder: (context, value, child) {
+          return Center(child: Text(value.text));
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
