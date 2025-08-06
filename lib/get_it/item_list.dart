@@ -9,14 +9,14 @@ class ItemList extends ChangeNotifier {
   bool _isLoading = false;
 
   ItemList(this.itemRepository) {
-    _fetchItems();
+    // _fetchItems();
   }
 
   List<String> get items => _items;
 
   bool get isLoading => _isLoading;
 
-  void _fetchItems() async {
+  void fetchItems() async {
     _isLoading = true;
     notifyListeners();
 

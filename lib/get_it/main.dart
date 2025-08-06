@@ -18,7 +18,9 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => ItemList(serviceLocator<ItemRepository>()),
+          create: (context) =>
+              ItemList(serviceLocator<ItemRepository>())..fetchItems(),
+          lazy: true,
         ),
       ],
       builder: (_, _) {
